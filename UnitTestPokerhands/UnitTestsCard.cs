@@ -12,7 +12,7 @@ namespace UnitTestsPokerHands
         {
             Card card = new Card("H", "8");
             Assert.AreEqual("H", card.suit);
-            Assert.AreEqual("0", card.value);
+            Assert.AreEqual("8", card.value);
         }
     }
 }
