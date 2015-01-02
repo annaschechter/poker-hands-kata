@@ -8,10 +8,13 @@ namespace PokerHands
     {
         public List<Card> cards { get; set;
         }
+        public Card winningCard { get; set;
+        }
 
         public Player()
         {
             this.cards = new List<Card>();
+            this.winningCard = null;
         }
 
         public void TakeCard(Card card)
@@ -30,17 +33,16 @@ namespace PokerHands
             {
                 Card card = this.cards[i];
                 Card nextCard = this.cards[i + 1];
-                if(card.suit != nextCard.suit)
-                {
-                    return false;
-                }
+                if (card.suit != nextCard.suit) return false;
             }
+            List<Card> sortedCards = SortCards();
+            winningCard = (sortedCards[sortedCards.Count -1]);
             return true;
         }
 
         public bool HasStraight()
         {
-            List<Card> sortedCards = this.cards.OrderBy(card =>card.value).ToList(); 
+            List<Card> sortedCards = SortCards(); 
             for (int i = 0; i < this.cards.Count - 1; i++)
             {
                 Card card = sortedCards[i];
@@ -50,6 +52,7 @@ namespace PokerHands
                     return false;
                 }
             }
+            winningCard = sortedCards[sortedCards.Count - 1];
             return true;
         }
 
@@ -65,6 +68,8 @@ namespace PokerHands
                 int value = this.cards[i].value;
                 if (this.cards.FindAll(card => card.value.Equals(value)).Count == 4)
                 {
+
+                    winningCard = this.cards[i];
                     return true;
                 }
             }
@@ -78,6 +83,7 @@ namespace PokerHands
                 int value = this.cards[i].value;
                 if (this.cards.FindAll(card => card.value.Equals(value)).Count == 3)
                 {
+                    winningCard = this.cards[i];
                     return true;
                 }
             }
@@ -86,29 +92,45 @@ namespace PokerHands
 
         public bool HasAPair()
         {
-            List<int> matches = new List<int>();
+            List<Card> matches = new List<Card>();
             for (int i = 0; i < this.cards.Count; i++)
             {
                 int value = this.cards[i].value;
-                matches.Add(this.cards.FindAll(card => card.value.Equals(value)).Count);
+                if(this.cards.FindAll(card => card.value.Equals(value)).Count == 2) matches.Add(this.cards[i]);
             }
-            return (matches.FindAll(number => number.Equals(2)).Count == 2);
+            if (matches.Count == 2)
+            {
+                winningCard = matches[0];
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool HasTwoPair()
         {
-            List<int> matches = new List<int>();
+            List<Card> matches = new List<Card>();
             for (int i = 0; i < this.cards.Count; i++)
             {
                 int value = this.cards[i].value;
-                matches.Add(this.cards.FindAll(card => card.value.Equals(value)).Count);
+                if (this.cards.FindAll(card => card.value.Equals(value)).Count == 2) matches.Add(this.cards[i]);
             }
-            return (matches.FindAll(number => number.Equals(2)).Count == 4);
+            if (matches.Count == 4)
+            {
+                winningCard = matches.OrderBy(card => card.value).ToList()[0];
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool HasFullHouse()
         {
-            return (HasThreeOfAKind() && HasAPair());
+            return (HasAPair() && HasThreeOfAKind());
         }
 
         public string Hand()
@@ -121,8 +143,14 @@ namespace PokerHands
             if (HasThreeOfAKind()) return "three of a kind";
             if (HasTwoPair()) return "two pair";
             if (HasAPair()) return "a pair";
+            List<Card> sortedCards = SortCards();
+            winningCard = sortedCards[sortedCards.Count - 1];
             return "high card";
+        }
 
+        public List<Card> SortCards()
+        {
+            return this.cards.OrderBy(card => card.value).ToList();
         }
     }
 }

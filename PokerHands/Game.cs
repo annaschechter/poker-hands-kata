@@ -39,12 +39,21 @@ namespace PokerHands
             {
                 Player currentPlayer = this.players[i];
                 string playersHand = this.players[i].Hand();
-                if (this.handRankings[playersHand] <= this.handRankings[winner.Hand()]) 
+                if (this.handRankings[playersHand] < this.handRankings[winner.Hand()]) 
                 {
                     winner = currentPlayer;
                 }
+                else if (this.handRankings[playersHand] == this.handRankings[winner.Hand()])
+                {
+                    winner = _EqualHandRankings(currentPlayer, winner);
+                }
             }
             return winner;
+        }
+
+        private Player _EqualHandRankings(Player player1, Player player2)
+        {
+            return player1.winningCard.value> player2.winningCard.value ? player1 : player2;
         }
     }
 }
