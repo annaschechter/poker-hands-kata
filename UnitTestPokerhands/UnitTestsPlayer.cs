@@ -7,21 +7,48 @@ namespace UnitTestsPokerhands
     [TestClass]
     public class UnitTestsPlayer
     {
+        private Player anna;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            anna = new Player();
+        }
+
+        public void GetPlayerReady(Player player)
+        {
+            Card card1 = new Card("d", "A");
+            player.TakeCard(card1);
+            Card card2 = new Card("d", "K");
+            player.TakeCard(card2);
+            Card card3 = new Card("d", "Q");
+            player.TakeCard(card3);
+            Card card4 = new Card("d", "J");
+            player.TakeCard(card4);
+            Card card5 = new Card("d", "T");
+            player.TakeCard(card5);
+        }
+
         [TestMethod]
         public void PlayerIsInitializedWithNoCards()
         {
-            Player player = new Player();
-            Assert.AreEqual(0, player.cards.Count);
+            Assert.AreEqual(0, anna.cards.Count);
         }
 
         [TestMethod]
         public void PlayerCanTakeCards()
         {
-            Player player = new Player();
             Card card = new Card("d", "A");
-            player.TakeCard(card);
-            Assert.AreEqual(1, player.cards.Count);
-            Assert.AreEqual("dA", player.cards[0]);
+            anna.TakeCard(card);
+            Assert.AreEqual(1, anna.cards.Count);
+            Assert.AreEqual("Ad", anna.cards[0]);
+        }
+
+        [TestMethod]
+        public void PlayerKnowsThatCardsBeenDealt()
+        {
+            GetPlayerReady(anna);
+            Assert.AreEqual(true, anna.Ready());
         }
 
     }

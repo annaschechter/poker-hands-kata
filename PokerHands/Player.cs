@@ -15,8 +15,13 @@ namespace PokerHands
 
         public void TakeCard(Card card)
         {
-            string cardDescription = card.suit + card.value;
+            string cardDescription = card.value+card.suit;
             this.cards.Add(cardDescription);
+        }
+
+        public bool Ready()
+        {
+            return this.cards.Count == 5;
         }
     }
 }
