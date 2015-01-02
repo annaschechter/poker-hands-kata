@@ -15,17 +15,30 @@ namespace UnitTestsPokerhands
             anna = new Player();
         }
 
-        public void GetPlayerReady(Player player)
+        public void GivePlayerFlash(Player player)
         {
-            Card card1 = new Card("d", "A");
+            Card card1 = new Card("d", 14);
             player.TakeCard(card1);
-            Card card2 = new Card("d", "K");
+            Card card2 = new Card("d", 5);
             player.TakeCard(card2);
-            Card card3 = new Card("d", "Q");
+            Card card3 = new Card("d", 12);
             player.TakeCard(card3);
-            Card card4 = new Card("d", "J");
+            Card card4 = new Card("d", 8);
             player.TakeCard(card4);
-            Card card5 = new Card("d", "T");
+            Card card5 = new Card("d", 10);
+            player.TakeCard(card5);
+        }
+        public void GivePlayerStraight(Player player)
+        {
+            Card card1 = new Card("d", 14);
+            player.TakeCard(card1);
+            Card card2 = new Card("h", 13);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 12);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 11);
+            player.TakeCard(card4);
+            Card card5 = new Card("d", 10);
             player.TakeCard(card5);
         }
 
@@ -38,17 +51,31 @@ namespace UnitTestsPokerhands
         [TestMethod]
         public void PlayerCanTakeCards()
         {
-            Card card = new Card("d", "A");
+            Card card = new Card("d", 14);
             anna.TakeCard(card);
             Assert.AreEqual(1, anna.cards.Count);
-            Assert.AreEqual("Ad", anna.cards[0]);
+            Assert.AreEqual("14d", anna.cards[0]);
         }
 
         [TestMethod]
         public void PlayerKnowsThatCardsBeenDealt()
         {
-            GetPlayerReady(anna);
+            GivePlayerFlash(anna);
             Assert.AreEqual(true, anna.Ready());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasAFlash()
+        {
+            GivePlayerFlash(anna);
+            Assert.AreEqual(true, anna.HasFlash());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveAFlash()
+        {
+            GivePlayerStraight(anna);
+            Assert.AreEqual(false, anna.HasFlash());
         }
 
     }

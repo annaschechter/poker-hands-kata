@@ -10,9 +10,9 @@ namespace UnitTestsPokerHands
         [TestMethod]
         public void CardIsInitializedWithSuitAndValue()
         {
-            Card card = new Card("h", "8");
-            Assert.AreEqual("h", card.suit);
-            Assert.AreEqual("8", card.value);
+            Card myCard = new Card("h", 8);
+            Assert.AreEqual("h", myCard.suit);
+            Assert.AreEqual(8, myCard.value);
         }
     }
 }
