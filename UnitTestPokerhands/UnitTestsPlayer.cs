@@ -15,7 +15,7 @@ namespace UnitTestsPokerhands
             anna = new Player();
         }
 
-        public void GivePlayerFlash(Player player)
+        public void GivePlayerFlush(Player player)
         {
             Card card1 = new Card("d", 14);
             player.TakeCard(card1);
@@ -54,28 +54,43 @@ namespace UnitTestsPokerhands
             Card card = new Card("d", 14);
             anna.TakeCard(card);
             Assert.AreEqual(1, anna.cards.Count);
-            Assert.AreEqual("14d", anna.cards[0]);
+            Assert.AreEqual("d", anna.cards[0].suit);
+            Assert.AreEqual(14, anna.cards[0].value);
         }
 
         [TestMethod]
         public void PlayerKnowsThatCardsBeenDealt()
         {
-            GivePlayerFlash(anna);
+            GivePlayerFlush(anna);
             Assert.AreEqual(true, anna.Ready());
         }
 
         [TestMethod]
         public void PlayerKnowsWhenHasAFlash()
         {
-            GivePlayerFlash(anna);
-            Assert.AreEqual(true, anna.HasFlash());
+            GivePlayerFlush(anna);
+            Assert.AreEqual(true, anna.HasFlush());
         }
 
         [TestMethod]
-        public void PlayerKnowsWhenDoesntHaveAFlash()
+        public void PlayerKnowsWhenDoesntHaveAFlush()
         {
             GivePlayerStraight(anna);
-            Assert.AreEqual(false, anna.HasFlash());
+            Assert.AreEqual(false, anna.HasFlush());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasAStraight()
+        {
+            GivePlayerStraight(anna);
+            Assert.AreEqual(true, anna.HasStraight());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveAStraight()
+        {
+            GivePlayerFlush(anna);
+            Assert.AreEqual(false, anna.HasStraight());
         }
 
     }
