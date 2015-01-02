@@ -256,5 +256,26 @@ namespace UnitTestsPokerhands
             Assert.AreEqual(false, anna.HasFullHouse());
         }
 
+        [TestMethod]
+        public void PlayerKnowsWhatHandTheyHaveFullHouse()
+        {
+            GivePlayerFullHouse(anna);
+            Assert.AreEqual("full house", anna.Hand());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhatHandTheyHaveAPair()
+        {
+            GivePlayerAPair(anna);
+            Assert.AreEqual("a pair", anna.Hand());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhatHandTheyHaveStraight()
+        {
+            GivePlayerStraight(anna);
+            Assert.AreEqual("straight", anna.Hand());
+        }
+
     }
 }

@@ -110,5 +110,19 @@ namespace PokerHands
         {
             return (HasThreeOfAKind() && HasAPair());
         }
+
+        public string Hand()
+        {
+            if (HasStraightFlush()) return "straight flush";
+            if (HasFourOfAKind()) return "four of a kind";
+            if (HasFullHouse()) return "full house";
+            if (HasFlush()) return "flush";
+            if (HasStraight()) return "straight";
+            if (HasThreeOfAKind()) return "three of a kind";
+            if (HasTwoPair()) return "two pair";
+            if (HasAPair()) return "a pair";
+            return "high card";
+
+        }
     }
 }
