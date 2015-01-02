@@ -53,5 +53,9 @@ namespace PokerHands
             return true;
         }
 
+        public bool HasStraightFlush()
+        {
+            return (HasFlush() && HasStraight());
+        }
     }
 }

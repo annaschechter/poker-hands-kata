@@ -41,6 +41,19 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("d", 10);
             player.TakeCard(card5);
         }
+        public void GivePlayerStraightFlush(Player player)
+        {
+            Card card1 = new Card("h", 14);
+            player.TakeCard(card1);
+            Card card2 = new Card("h", 13);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 12);
+            player.TakeCard(card3);
+            Card card4 = new Card("h", 11);
+            player.TakeCard(card4);
+            Card card5 = new Card("h", 10);
+            player.TakeCard(card5);
+        }
 
         [TestMethod]
         public void PlayerIsInitializedWithNoCards()
@@ -93,5 +106,19 @@ namespace UnitTestsPokerhands
             Assert.AreEqual(false, anna.HasStraight());
         }
 
+        [TestMethod]
+        public void PlayerKnowsWhenHasAStraightFlush()
+        {
+            GivePlayerStraightFlush(anna);
+            Assert.AreEqual(true, anna.HasStraightFlush());
+
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveAStraightFlush()
+        {
+            GivePlayerFlush(anna);
+            Assert.AreEqual(false, anna.HasStraightFlush());
+        }
     }
 }
