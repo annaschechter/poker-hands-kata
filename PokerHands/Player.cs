@@ -105,5 +105,10 @@ namespace PokerHands
             }
             return (matches.FindAll(number => number.Equals(2)).Count == 4);
         }
+
+        public bool HasFullHouse()
+        {
+            return (HasThreeOfAKind() && HasAPair());
+        }
     }
 }

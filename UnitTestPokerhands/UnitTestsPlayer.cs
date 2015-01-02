@@ -107,6 +107,19 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("s", 4);
             player.TakeCard(card5);
         }
+        public void GivePlayerFullHouse(Player player)
+        {
+            Card card1 = new Card("h", 2);
+            player.TakeCard(card1);
+            Card card2 = new Card("c", 2);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 11);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 11);
+            player.TakeCard(card4);
+            Card card5 = new Card("s", 11);
+            player.TakeCard(card5);
+        }
 
         [TestMethod]
         public void PlayerIsInitializedWithNoCards()
@@ -225,8 +238,22 @@ namespace UnitTestsPokerhands
         [TestMethod]
         public void PlayerKnowsWhenDoesntHaveTwoPair()
         {
-            GivePlayerThreeOfAKind(anna);
+            GivePlayerFourOfAKind(anna);
             Assert.AreEqual(false, anna.HasTwoPair());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasFullHouse()
+        {
+            GivePlayerFullHouse(anna);
+            Assert.AreEqual(true, anna.HasFullHouse());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveFullHouse()
+        {
+            GivePlayerThreeOfAKind(anna);
+            Assert.AreEqual(false, anna.HasFullHouse());
         }
 
     }
