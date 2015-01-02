@@ -15,7 +15,7 @@ namespace UnitTestsPokerhands
             anna = new Player();
         }
 
-        public void GivePlayerFlush(Player player)
+        public static void GivePlayerFlush(Player player)
         {
             Card card1 = new Card("d", 14);
             player.TakeCard(card1);
@@ -28,7 +28,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("d", 10);
             player.TakeCard(card5);
         }
-        public void GivePlayerStraight(Player player)
+        public static void GivePlayerStraight(Player player)
         {
             Card card1 = new Card("d", 14);
             player.TakeCard(card1);
@@ -41,7 +41,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("d", 10);
             player.TakeCard(card5);
         }
-        public void GivePlayerStraightFlush(Player player)
+        public static void GivePlayerStraightFlush(Player player)
         {
             Card card1 = new Card("h", 14);
             player.TakeCard(card1);
@@ -54,7 +54,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("h", 10);
             player.TakeCard(card5);
         }
-        public void GivePlayerFourOfAKind(Player player)
+        public static void GivePlayerFourOfAKind(Player player)
         {
             Card card1 = new Card("h", 9);
             player.TakeCard(card1);
@@ -67,7 +67,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("s", 9);
             player.TakeCard(card5);
         }
-        public void GivePlayerThreeOfAKind(Player player)
+        public static void GivePlayerThreeOfAKind(Player player)
         {
             Card card1 = new Card("h", 2);
             player.TakeCard(card1);
@@ -80,7 +80,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("s", 9);
             player.TakeCard(card5);
         }
-        public void GivePlayerAPair(Player player)
+        public static void GivePlayerAPair(Player player)
         {
             Card card1 = new Card("h", 2);
             player.TakeCard(card1);
@@ -94,7 +94,7 @@ namespace UnitTestsPokerhands
             player.TakeCard(card5);
         }
 
-        public void GivePlayerTwoPair(Player player)
+        public static void GivePlayerTwoPair(Player player)
         {
             Card card1 = new Card("h", 2);
             player.TakeCard(card1);
@@ -107,7 +107,7 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("s", 4);
             player.TakeCard(card5);
         }
-        public void GivePlayerFullHouse(Player player)
+        public static void GivePlayerFullHouse(Player player)
         {
             Card card1 = new Card("h", 2);
             player.TakeCard(card1);
