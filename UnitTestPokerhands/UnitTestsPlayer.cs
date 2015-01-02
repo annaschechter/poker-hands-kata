@@ -54,6 +54,32 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("h", 10);
             player.TakeCard(card5);
         }
+        public void GivePlayerFourOfAKind(Player player)
+        {
+            Card card1 = new Card("h", 9);
+            player.TakeCard(card1);
+            Card card2 = new Card("c", 5);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 9);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 9);
+            player.TakeCard(card4);
+            Card card5 = new Card("s", 9);
+            player.TakeCard(card5);
+        }
+        public void GivePlayerThreeOfAKind(Player player)
+        {
+            Card card1 = new Card("h", 2);
+            player.TakeCard(card1);
+            Card card2 = new Card("c", 9);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 11);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 9);
+            player.TakeCard(card4);
+            Card card5 = new Card("s", 9);
+            player.TakeCard(card5);
+        }
 
         [TestMethod]
         public void PlayerIsInitializedWithNoCards()
@@ -120,5 +146,34 @@ namespace UnitTestsPokerhands
             GivePlayerFlush(anna);
             Assert.AreEqual(false, anna.HasStraightFlush());
         }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasFourOfAKind()
+        {
+            GivePlayerFourOfAKind(anna);
+            Assert.AreEqual(true, anna.HasFourOfAKind());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveFourOfAKind()
+        {
+            GivePlayerStraight(anna);
+            Assert.AreEqual(false, anna.HasFourOfAKind());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasThreeOfAKind()
+        {
+            GivePlayerThreeOfAKind(anna);
+            Assert.AreEqual(true, anna.HasThreeOfAKind());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveThreeOfAKind()
+        {
+            GivePlayerStraight(anna);
+            Assert.AreEqual(false, anna.HasThreeOfAKind());
+        }
+
     }
 }

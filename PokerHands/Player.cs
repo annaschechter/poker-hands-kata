@@ -57,5 +57,31 @@ namespace PokerHands
         {
             return (HasFlush() && HasStraight());
         }
+
+        public bool HasFourOfAKind()
+        {
+            for (int i = 0; i < this.cards.Count; i++)
+            {
+                int value = this.cards[i].value;
+                if (this.cards.FindAll(card => card.value.Equals(value)).Count == 4)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool HasThreeOfAKind()
+        {
+            for (int i = 0; i < this.cards.Count; i++)
+            {
+                int value = this.cards[i].value;
+                if (this.cards.FindAll(card => card.value.Equals(value)).Count == 3)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
