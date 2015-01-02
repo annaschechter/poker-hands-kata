@@ -80,6 +80,33 @@ namespace UnitTestsPokerhands
             Card card5 = new Card("s", 9);
             player.TakeCard(card5);
         }
+        public void GivePlayerAPair(Player player)
+        {
+            Card card1 = new Card("h", 2);
+            player.TakeCard(card1);
+            Card card2 = new Card("c", 2);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 11);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 8);
+            player.TakeCard(card4);
+            Card card5 = new Card("s", 13);
+            player.TakeCard(card5);
+        }
+
+        public void GivePlayerTwoPair(Player player)
+        {
+            Card card1 = new Card("h", 2);
+            player.TakeCard(card1);
+            Card card2 = new Card("c", 2);
+            player.TakeCard(card2);
+            Card card3 = new Card("h", 11);
+            player.TakeCard(card3);
+            Card card4 = new Card("d", 11);
+            player.TakeCard(card4);
+            Card card5 = new Card("s", 4);
+            player.TakeCard(card5);
+        }
 
         [TestMethod]
         public void PlayerIsInitializedWithNoCards()
@@ -173,6 +200,33 @@ namespace UnitTestsPokerhands
         {
             GivePlayerStraight(anna);
             Assert.AreEqual(false, anna.HasThreeOfAKind());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasAPair()
+        {
+            GivePlayerAPair(anna);
+            Assert.AreEqual(true, anna.HasAPair());
+        }
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveAPair()
+        {
+            GivePlayerThreeOfAKind(anna);
+            Assert.AreEqual(false, anna.HasAPair());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenHasTwoPair()
+        {
+            GivePlayerTwoPair(anna);
+            Assert.AreEqual(true, anna.HasTwoPair());
+        }
+
+        [TestMethod]
+        public void PlayerKnowsWhenDoesntHaveTwoPair()
+        {
+            GivePlayerThreeOfAKind(anna);
+            Assert.AreEqual(false, anna.HasTwoPair());
         }
 
     }

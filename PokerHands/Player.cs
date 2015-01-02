@@ -83,5 +83,27 @@ namespace PokerHands
             }
             return false;
         }
+
+        public bool HasAPair()
+        {
+            List<int> matches = new List<int>();
+            for (int i = 0; i < this.cards.Count; i++)
+            {
+                int value = this.cards[i].value;
+                matches.Add(this.cards.FindAll(card => card.value.Equals(value)).Count);
+            }
+            return (matches.FindAll(number => number.Equals(2)).Count == 2);
+        }
+
+        public bool HasTwoPair()
+        {
+            List<int> matches = new List<int>();
+            for (int i = 0; i < this.cards.Count; i++)
+            {
+                int value = this.cards[i].value;
+                matches.Add(this.cards.FindAll(card => card.value.Equals(value)).Count);
+            }
+            return (matches.FindAll(number => number.Equals(2)).Count == 4);
+        }
     }
 }
