@@ -7,6 +7,55 @@ namespace PokerHands
 {
     public class Game
     {
+        public static void Main()
+        {
+            Console.WriteLine("Please enter the name of the first player:");
+            string player1Name = Console.ReadLine();
+            Player player1 = new Player();
+            Console.WriteLine("Please enter the name of the second player:");
+            string player2Name = Console.ReadLine();
+            Player player2 = new Player();
+            Game poker = new Game();
+            poker.AddPlayer(player1);
+            poker.AddPlayer(player2);
+
+            for (int i = 1; i < 6; i++)
+            {
+                Console.WriteLine("Please enter the card suit for " + player1Name + " choose from 'h', 'd', 's' or 'c'");
+                string suit = Console.ReadLine();
+                Console.WriteLine("Please enter the card value for " + player1Name + " choose from numbers 2 to 14");
+                int value = Convert.ToInt16(Console.ReadLine());
+                Card player1Card = new Card(suit, value);
+                player1.TakeCard(player1Card);
+            }
+
+            for (int i = 1; i < 6; i++)
+            {
+                Console.WriteLine("Please enter the card suit for " + player2Name + " choose from 'h', 'd', 's' or 'c'");
+                string suit = Console.ReadLine();
+                Console.WriteLine("Please enter the card value for " + player2Name + " choose from numbers 2 to 14");
+                int value = Convert.ToInt16(Console.ReadLine());
+                Card player2Card = new Card(suit, value);
+                player2.TakeCard(player2Card);
+            }
+
+            Player winner = poker.Winner();
+            if (winner == player1)
+            {
+                string winnerName = player1Name;
+                Console.WriteLine("The winner is " + winnerName);
+            }
+            else
+            {
+                string winnerName = player2Name;
+                Console.WriteLine("The winner is " + winnerName);
+            }
+            Console.WriteLine("Hope you enjoyed the game!!!");
+            Console.ReadLine();
+
+        }
+
+        
         public List<Player> players {get; set;
         }
         public Dictionary<string, int> handRankings { get; set;

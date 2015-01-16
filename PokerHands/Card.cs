@@ -14,9 +14,5 @@ namespace PokerHands
             this.suit = suit;
             this.value = value;
         }
-
-        public static void Main()
-        { 
-        }
     }
 }
