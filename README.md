@@ -30,4 +30,4 @@ Open solution with Microsoft Visual Studio or MonoDevelop
 ```
 $ open PokerHands.sln
 ```
-Use Visual Studio or MonoDevelop options to run the unit tests or use the Main() method to try ranking poker hands of your choice. 
+Use Visual Studio or MonoDevelop options to run the unit tests or run the application for ranking poker hands in the console. 
